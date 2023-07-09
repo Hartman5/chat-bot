@@ -1,2 +1,3 @@
-# free-gpt
-GPT-4 for free
+# AI Powered Chat Bot
+
+Powered by heypi.com
