@@ -116,13 +116,11 @@ def send_chat(message):
 def main():
     host_session()
     events()
-    message = history()
-    print(message)
+    print(history())
     while True:
         message = input('>>> ')
         if message == 'exit':
             break
-        response = send_chat(message)
-        print(response)
+        print(send_chat(message))
 
 main()
