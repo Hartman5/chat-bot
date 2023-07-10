@@ -3,8 +3,7 @@ from curl_cffi import requests
 
 session = requests.Session(impersonate="chrome101")
 
-def generate_cookies():
-
+def host_session():
     headers = {
         'authority': 'heypi.com',
         'accept': 'application/json',
@@ -28,7 +27,6 @@ def generate_cookies():
     return;
 
 def events():
-
     headers = {
         'authority': 'heypi.com',
         'accept': '*/*',
@@ -116,7 +114,7 @@ def send_chat(message):
     return message
 
 def main():
-    generate_cookies()
+    host_session()
     events()
     message = history()
     print(message)
