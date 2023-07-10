@@ -12,8 +12,7 @@ def generate_cookies():
         'authority': 'heypi.com',
         'accept': 'application/json',
         'accept-language': 'en-US,en;q=0.9',
-        # Already added when you pass json=
-        # 'content-type': 'application/json',
+        'content-type': 'application/json',
         # 'cookie': '__cf_bm=bswy1thrM_whuFa0AcysL12so86_WQ5D_5yjWxAthwc-1688943640-0-AYMjUJelRYzyK/LnrScQdDRGc5Y9sXDglB+2AO9g7zZneWzBzvl/qF40ZPz2e1eWLfXHdlkab60jMozHZeIeJ3U=; ai_user=N3SltgfkkRZwVLvOfj5PN5|2023-07-09T23:00:41.612Z',
         'origin': 'https://heypi.com',
         'referer': 'https://heypi.com/talk',
@@ -137,6 +136,8 @@ def main():
     print(message)
     while True:
         message = input('>>> ')
+        if message == 'exit':
+            break
         response = send_chat(message)
         print(response)
 
