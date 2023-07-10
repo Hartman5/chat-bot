@@ -3,10 +3,7 @@ from curl_cffi import requests
 
 session = requests.Session(impersonate="chrome101")
 
-cookies = {}
-
 def generate_cookies():
-    global cookies
 
     headers = {
         'authority': 'heypi.com',
@@ -31,7 +28,6 @@ def generate_cookies():
     return;
 
 def events():
-    global cookies
 
     headers = {
         'authority': 'heypi.com',
@@ -52,21 +48,19 @@ def events():
 
     data = '{"n":"curtain-raiser:started","u":"https://heypi.com/talk","d":"pi.ai","r":null}'
 
-    session.post('https://heypi.com/proxy/api/event', cookies=cookies, headers=headers, data=data)
+    session.post('https://heypi.com/proxy/api/event', headers=headers, data=data)
 
     data = '{"n":"pageview","u":"https://heypi.com/talk","d":"pi.ai","r":null}'
 
-    session.post('https://heypi.com/proxy/api/event', cookies=cookies, headers=headers, data=data)
+    session.post('https://heypi.com/proxy/api/event', headers=headers, data=data)
 
     data = '{"n":"curtain-raiser:completed","u":"https://heypi.com/talk","d":"pi.ai","r":null}'
 
-    session.post('https://heypi.com/proxy/api/event', cookies=cookies, headers=headers, data=data)
+    session.post('https://heypi.com/proxy/api/event', headers=headers, data=data)
 
-    return cookies
+    return;
 
 def history():
-    global cookies
-
     headers = {
         'authority': 'heypi.com',
         'accept': 'application/json',
@@ -83,19 +77,11 @@ def history():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
     }
 
-    response = session.get('https://heypi.com/api/chat/history', cookies=cookies, headers=headers).json()
+    response = session.get('https://heypi.com/api/chat/history', headers=headers).json()
 
     return response['messages'][0]['text']
 
 def send_chat(message):
-    global cookies
-
-    cookies = {
-        '__cf_bm': 'A3ZB8pncOOxAMp.F9ZI3gkFSWJF6AkV2PFi8ICfAJh8-1688931955-0-AQNEdLELAjUsJ20j0t8qOaYo0pC3tb+YtVXT7c6nuVBJAjneeTkoyHrMzgNXCVXVuPhdFFlilY+N3A+caCl9x8A=',
-        'ai_user': 'DVdr1vBPXCrmH0FGFB5pdo|2023-07-09T19:45:57.257Z',
-        '__Host-session': '87sKN1uvf4m7BgnWybqMj',
-    }
-
     headers = {
         'authority': 'heypi.com',
         'accept': 'text/event-stream',
@@ -118,7 +104,7 @@ def send_chat(message):
         'text': message,
     }
 
-    response = session.post('https://heypi.com/api/chat', cookies=cookies, headers=headers, json=json_data).text
+    response = session.post('https://heypi.com/api/chat', headers=headers, json=json_data).text
 
     partials = re.findall('data: {"text":"(.*?)"}', response)
 
