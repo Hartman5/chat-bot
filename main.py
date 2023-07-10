@@ -1,8 +1,5 @@
 import re
-import string
-import random
 from curl_cffi import requests
-from datetime import datetime, timedelta
 
 session = requests.Session(impersonate="chrome101")
 
@@ -30,9 +27,9 @@ def generate_cookies():
         'x-api-version': '3',
     }
 
-    response = requests.post('https://heypi.com/api/chat/start', headers=headers)
+    session.post('https://heypi.com/api/chat/start', headers=headers)
 
-    return response.cookies['__cf_bm']
+    return;
 
 def events():
     global cookies
