@@ -1,6 +1,11 @@
 # AI Powered Chat Bot
 
-Powered by heypi.com private API
+Powered by heypi.com private API. Written to learn more about reverse engineering.
+
+# Features
+
+TLS/JA3 Spoofing
+Fully Undetected
 
 # Setup
 
